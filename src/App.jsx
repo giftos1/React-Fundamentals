@@ -30,50 +30,51 @@ const frameworks = [
 // function getTitle(title) {
 //     return title;
 // }
-function App() {
+
+const App = () => {
     return (
         <div>
             {/*<h1>{welcome.greeting} {getTitle('React')}</h1>*/}
             <h1>Hello World</h1>
+            {/* creating instances of Search component*/}
+            <Search />
             <Search />
             <hr />
+            {/* creating instances of Frameworks component*/}
+            <Frameworks />
             <Frameworks />
         </div>
     );
 }
 
-function Search() {
-    return (
-        <div>
-            <label htmlFor="search">Search: <input type="text" id="search"/></label>
-        </div>
-    );
-}
+// declaration of Search component
+const Search = () => (
+    <div>
+        <label htmlFor="search">Search: <input type="text" id="search"/></label>
+    </div>
+);
 
-function Frameworks() {
-    return (
-        <ul>
-            {frameworks.map(function (item) {
-                return (
-                    <li key={item.objectID}>
-                            <span>
-                                <a href={item.url} target="_blank" rel="noreferrer">{item.title}</a>
-                            </span>
-                        <span>
-                                {item.author}
-                            </span>
-                        <span>
-                                {item.nun_comments}
-                            </span>
-                        <span>
-                                {item.points}
-                            </span>
-                    </li>
-                );
-            })}
-        </ul>
-    );
-}
+
+const Frameworks = () => (
+    <ul>
+        {frameworks.map((item) => (
+            <li key={item.objectID}>
+                <span>
+                    <a href={item.url} target="_blank" rel="noreferrer">{item.title}</a>
+                </span>
+                <span>
+                    {item.author}
+                </span>
+                <span>
+                    {item.nun_comments}
+                </span>
+                <span>
+                    {item.points}
+                </span>
+            </li>
+        ))}
+    </ul>
+);
 
 
 export default App
