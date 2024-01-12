@@ -35,29 +35,45 @@ function App() {
         <div>
             {/*<h1>{welcome.greeting} {getTitle('React')}</h1>*/}
             <h1>Hello World</h1>
-            <label htmlFor="search">Search: <input type="text" id="search"/></label>
-            <hr/>
-            <ul>
-                {frameworks.map(function (item) {
-                    return (
-                        <li key={item.objectID}>
-                            <span>
-                                <a href={item.url} target="_blank" rel="noreferrer">{item.title}</a>
-                            </span>
-                            <span>
-                                {item.author}
-                            </span>
-                            <span>
-                                {item.nun_comments}
-                            </span>
-                            <span>
-                                {item.points}
-                            </span>
-                        </li>
-                    );
-                })}
-            </ul>
+            <Search />
+            <hr />
+            <Frameworks />
         </div>
     );
 }
+
+function Search() {
+    return (
+        <div>
+            <label htmlFor="search">Search: <input type="text" id="search"/></label>
+        </div>
+    );
+}
+
+function Frameworks() {
+    return (
+        <ul>
+            {frameworks.map(function (item) {
+                return (
+                    <li key={item.objectID}>
+                            <span>
+                                <a href={item.url} target="_blank" rel="noreferrer">{item.title}</a>
+                            </span>
+                        <span>
+                                {item.author}
+                            </span>
+                        <span>
+                                {item.nun_comments}
+                            </span>
+                        <span>
+                                {item.points}
+                            </span>
+                    </li>
+                );
+            })}
+        </ul>
+    );
+}
+
+
 export default App
