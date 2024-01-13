@@ -48,33 +48,43 @@ const App = () => {
 }
 
 // declaration of Search component
-const Search = () => (
-    <div>
-        <label htmlFor="search">Search: <input type="text" id="search"/></label>
-    </div>
-);
+const Search = () => {
+    const handleChange = (event) => {
+        // synthetic event
+        console.log(event);
+        // value of target (here: input HTML element)
+        console.log(event.target.value)
+    }
+    return (
+        <div>
+            <label htmlFor="search">Search: <input type="text" id="search" onChange={handleChange} onBlur={handleChange}/></label>
+        </div>
+    )
+}
 
 
-const Frameworks = () => (
-    <ul>
-        {frameworks.map((item) => (
-            <li key={item.objectID}>
+const Frameworks = () => {
+    return (
+        <ul>
+            {frameworks.map((item) => (
+                <li key={item.objectID}>
                 <span>
                     <a href={item.url} target="_blank" rel="noreferrer">{item.title}</a>
                 </span>
-                <span>
+                    <span>
                     {item.author}
                 </span>
-                <span>
+                    <span>
                     {item.nun_comments}
                 </span>
-                <span>
+                    <span>
                     {item.points}
                 </span>
-            </li>
-        ))}
-    </ul>
-);
+                </li>
+            ))}
+        </ul>
+    )
+}
 
 
 export default App
