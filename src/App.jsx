@@ -1,7 +1,5 @@
 /* React Fundamentals*/
-
 import './App.css'
-
 // const title = 'React';
 // const welcome = {
 //     title: 'React',
@@ -9,29 +7,31 @@ import './App.css'
 // }
 
 // const movies = ['Avatar', 'The Matrix', 'Fast & Furious X', 'The Bible'];
-const frameworks = [
-    {
-        title: 'React',
-        url: 'https://reactjs.org/',
-        author: 'Jordan Walke',
-        nun_comments: 3,
-        points: 4,
-        objectID: 0
-    },
-    {
-        title: 'Redux',
-        url: 'https://redux.js.org//',
-        author: 'Dan Abramov, Andrew Clark',
-        nun_comments: 2,
-        points: 5,
-        objectID: 1
-    },
-    ];
+
 // function getTitle(title) {
 //     return title;
 // }
 
 const App = () => {
+    const stories = [
+        {
+            title: 'React',
+            url: 'https://reactjs.org/',
+            author: 'Jordan Walke',
+            nun_comments: 3,
+            points: 4,
+            objectID: 0
+        },
+        {
+            title: 'Redux',
+            url: 'https://redux.js.org//',
+            author: 'Dan Abramov, Andrew Clark',
+            nun_comments: 2,
+            points: 5,
+            objectID: 1
+        },
+    ];
+
     return (
         <div>
             {/*<h1>{welcome.greeting} {getTitle('React')}</h1>*/}
@@ -41,8 +41,8 @@ const App = () => {
             <Search />
             <hr />
             {/* creating instances of Frameworks component*/}
-            <Frameworks />
-            <Frameworks />
+            <List list= {stories}/>
+            <List list= {stories}/>
         </div>
     );
 }
@@ -63,27 +63,27 @@ const Search = () => {
 }
 
 
-const Frameworks = () => {
+const List = (props) => {
     return (
         <ul>
-            {frameworks.map((item) => (
-                <li key={item.objectID}>
-                <span>
-                    <a href={item.url} target="_blank" rel="noreferrer">{item.title}</a>
-                </span>
-                    <span>
-                    {item.author}
-                </span>
-                    <span>
-                    {item.nun_comments}
-                </span>
-                    <span>
-                    {item.points}
-                </span>
-                </li>
+            {props.list.map((item) => (
+               <Item key={item.objectID} item={item}/>
             ))}
         </ul>
     )
+}
+
+const Item = (props) => {
+  return (
+      <li>
+          <span>
+              <a href={props.item.url}> {props.item.title} </a>
+          </span>
+          <span> {props.item.author} </span>
+          <span> {props.item.nun_comments} </span>
+          <span> {props.item.points} </span>
+      </li>
+  )
 }
 
 
