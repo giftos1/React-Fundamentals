@@ -1,17 +1,6 @@
 /* React Fundamentals*/
 import './App.css'
 import React from "react";
-// const title = 'React';
-// const welcome = {
-//     title: 'React',
-//     greeting: 'Hey'
-// }
-
-// const movies = ['Avatar', 'The Matrix', 'Fast & Furious X', 'The Bible'];
-
-// function getTitle(title) {
-//     return title;
-// }
 
 const App = () => {
     const stories = [
@@ -33,13 +22,20 @@ const App = () => {
         },
     ];
 
+    // A
+    const handleSearch = (event) => {
+        // D
+        console.log(event.target.value);
+    }
+
     return (
         <div>
             {/*<h1>{welcome.greeting} {getTitle('React')}</h1>*/}
             <h1>Hello World</h1>
             {/* creating instances of Search component*/}
+            <Search onSearch={handleSearch}/>
             <Search />
-            <Search />
+            {/* // B */}
             <hr />
             {/* creating instances of Frameworks component*/}
             <List list= {stories}/>
@@ -49,13 +45,16 @@ const App = () => {
 }
 
 // declaration of Search component
-const Search = () => {
+const Search = (props) => {
     // let searchTerm = '';
     const [searchTerm, setSearchTerm] = React.useState('');
     const handleChange = (event) => {
         setSearchTerm(event.target.value);
         // value of target (here: input HTML element)
         // console.log(event.target.value)
+
+        // C
+        props.onSearch(event);
     }
     return (
         <div>
