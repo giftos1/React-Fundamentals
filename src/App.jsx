@@ -1,5 +1,6 @@
 /* React Fundamentals*/
 import './App.css'
+import React from "react";
 // const title = 'React';
 // const welcome = {
 //     title: 'React',
@@ -49,15 +50,17 @@ const App = () => {
 
 // declaration of Search component
 const Search = () => {
+    // let searchTerm = '';
+    const [searchTerm, setSearchTerm] = React.useState('');
     const handleChange = (event) => {
-        // synthetic event
-        console.log(event);
+        setSearchTerm(event.target.value);
         // value of target (here: input HTML element)
-        console.log(event.target.value)
+        // console.log(event.target.value)
     }
     return (
         <div>
             <label htmlFor="search">Search: <input type="text" id="search" onChange={handleChange} onBlur={handleChange}/></label>
+            <p>Searching for <strong> {searchTerm} </strong>.</p>
         </div>
     )
 }
