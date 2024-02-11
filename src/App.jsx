@@ -22,44 +22,51 @@ const App = () => {
         },
     ];
 
+    // const words = [
+    //     'red',
+    //     'blue',
+    //     'green',
+    //     'orange',
+    //     'purple',
+    //     'white',
+    //     'violet'
+    // ]
+
+    const [searchTerm, setSearchTerm] = React.useState('React');
     // A
     const handleSearch = (event) => {
         // D
         console.log(event.target.value);
+        setSearchTerm(event.target.value);
+
     }
 
+    const searchedStories = stories.filter((story) => {
+        return story.title.toLowerCase().includes(searchTerm.toLowerCase());
+    })
+
+    // const filteredWords = words.filter((word) => word.length >= 4);
+    // console.log(filteredWords);
     return (
         <div>
-            {/*<h1>{welcome.greeting} {getTitle('React')}</h1>*/}
             <h1>Hello World</h1>
-            {/* creating instances of Search component*/}
-            <Search onSearch={handleSearch}/>
-            <Search />
-            {/* // B */}
+
+            <Search search={searchTerm}  onSearch={handleSearch}/>
+
             <hr />
-            {/* creating instances of Frameworks component*/}
-            <List list= {stories}/>
-            <List list= {stories}/>
+
+            <List list= {searchedStories}/>
         </div>
     );
 }
 
 // declaration of Search component
 const Search = (props) => {
-    // let searchTerm = '';
-    const [searchTerm, setSearchTerm] = React.useState('');
-    const handleChange = (event) => {
-        setSearchTerm(event.target.value);
-        // value of target (here: input HTML element)
-        // console.log(event.target.value)
 
-        // C
-        props.onSearch(event);
-    }
     return (
         <div>
-            <label htmlFor="search">Search: <input type="text" id="search" onChange={handleChange} onBlur={handleChange}/></label>
-            <p>Searching for <strong> {searchTerm} </strong>.</p>
+            <label htmlFor="search">Search:</label>
+            <input id="search" type="text" value={props.search} onChange={props.onSearch}/>
         </div>
     )
 }
